@@ -1,0 +1,38 @@
+﻿@using WebsiteBanHang.Models
+@model IEnumerable<LoaiSanPham>
+@{
+    ViewBag.Title = "Quản lý loại sản phẩm";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 10);
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="card">
+    <div class="card-body">
+        <p>
+            @Html.ActionLink("Thêm mới", "TaoMoi", null, htmlAttributes: new { @class = "btn btn-sm btn-warning font-weight-bold " })
+        </p>
+        @if (grid != null)
+        {
+            <div id="list" class="table-responsive">
+                @grid.GetHtml(
+                tableStyle: "table table-bordered table-hover",
+                headerStyle: "",
+                footerStyle: "text-center",
+                numericLinksCount: 10,
+                mode: WebGridPagerModes.All, firstText: "Trang đầu", lastText: "Trang cuối",
+                columns: grid.Columns(
+                    grid.Column("MaLoaiSP", "Mã loại sản phẩm"),
+                    grid.Column("TenLoai", "Tên loại sản phẩm"),
+                    grid.Column("Icon", "Icon"),
+                    grid.Column("BiDanh", "Bí danh"),
+                    grid.Column(format: p => Html.ActionLink("Chỉnh sửa", "ChinhSua", new { id = p.MaLoaiSP })),
+                    grid.Column(format: p => Html.ActionLink("Xóa", "Xoa", new { id = p.MaLoaiSP }))
+                    )
+                )
+            </div>
+        }
+    </div>
+</div>
+

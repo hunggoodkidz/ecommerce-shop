@@ -1,0 +1,35 @@
+﻿@model WebsiteBanHang.Models.Quyen
+@{
+    ViewBag.Title = "Quản lý quyền";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<h4>@Html.ActionLink("Quản lý quyền", "Index") > Xóa</h4>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Thông tin sản phẩm</h4>
+        <hr />
+
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.MaQuyen)</label>
+            <div class="col-sm-6 col-form-label">@Html.DisplayFor(model => model.MaQuyen)</div>
+        </div>
+
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.TenQuyen)</label>
+            <div class="col-sm-6 col-form-label">@Html.DisplayFor(model => model.TenQuyen)</div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Xóa" class="btn btn-sm btn-primary font-weight-bold w-25" />
+                    @Html.ActionLink("Trở về", "Index", null, htmlAttributes: new { @class = "btn btn-sm btn-secondary font-weight-bold w-25" })
+                }
+            </div>
+        </div>
+    </div>
+</div>

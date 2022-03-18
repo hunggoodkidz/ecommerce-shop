@@ -1,0 +1,44 @@
+﻿@using WebsiteBanHang.Models;
+@model IEnumerable<DonDatHang>
+@{
+    ViewBag.Title = "Quản lí đơn hàng";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 10);
+}
+
+<div class="card">
+    <div class="card-body">
+        <h2 class="col-md-8">Quản lí đơn hàng (Đã thanh toán & đã giao )</h2>
+        <br />
+        <ul class="nav nav-pills nav-justified">
+            <li class="nav-item"><a class="nav-link" href="@Url.Action("ChuaThanhToan","QuanLyDonHang")">CHƯA THANH TOÁN</a></li>
+            <li class="nav-item"><a class="nav-link " href="@Url.Action("ChuaGiao","QuanLyDonHang")">ĐÃ THANH TOÁN & CHƯA GIAO</a></li>
+            <li class="nav-item"><a class="nav-link active" href="@Url.Action("DaGiaoDaThanhToan","QuanLyDonHang")">ĐÃ THANH TOÁN & ĐÃ GIAO</a></li>
+        </ul>
+        <br />
+        @if(grid != null)
+        {
+            <div id="list" class="table-responsive">
+                @grid.GetHtml(
+                      tableStyle: "table table-bordered table-hover",
+                      headerStyle: "",
+                      footerStyle: "text-center",
+                      numericLinksCount: 10,
+                      mode: WebGridPagerModes.All, firstText: "Trang đầu", lastText: "Trang cuối",
+                      columns: grid.Columns(
+                          grid.Column("MaDDH", "Mã đơn hàng"),
+                          grid.Column("MaKH", "Họ tên KH", format: p => p.MaKH != null ? p.KhachHang.TenKH : ""),
+                          grid.Column("NgayDat", "Ngày đặt"),
+                          grid.Column("TinhTrangGiaoHang", "Tình trạng giao hàng"),
+                          grid.Column("NgayGiao", "Ngày giao"),
+                          grid.Column("DaThanhToan", "Đã thanh toán"),
+                          grid.Column("UuDai", "Ưu đãi"),
+                          grid.Column("DaHuy", "Đã hủy"),
+                          grid.Column(format: p => Html.ActionLink("Duyệt đơn", "DuyetDonHang", new { id = p.MaDDH}, new { @target = "_blank" }))
+                          )
+                      )
+            </div>
+        }
+    </div>
+</div>
+

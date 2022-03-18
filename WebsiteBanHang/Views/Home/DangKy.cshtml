@@ -1,0 +1,90 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@using CaptchaMvc;
+@model WebsiteBanHang.Models.ThanhVien
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Layout/RegisterLayout.cshtml";
+}
+
+<style>
+    .register-bottom-grid input[type="text"] {
+        width: 100%;
+        padding: 1em;
+        margin: 1em 0;
+        background: none;
+        outline: none;
+        border: 1px solid #A09F9F;
+        -webkit-appearance: none;
+    }
+</style>
+
+<div class="container">
+    <div class=" register">
+        <h1>Đăng ký thành viên</h1>
+        @using(Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="col-md-6 register-top-grid">
+                <h3>Thông tin cá nhân</h3>
+        
+                <div>
+                    <span>@Html.LabelFor(model=>model.HoTen)</span>
+                    @Html.TextBoxFor(model => model.HoTen)
+                    @Html.ValidationMessageFor(model=>model.HoTen, "", new { @style = "margin-bottom:15px; color:#DC143C;" })
+                </div>
+                <div>
+                    <span>@Html.LabelFor(model => model.DiaChi)</span>
+                    @Html.TextBoxFor(model => model.DiaChi)
+                    @Html.ValidationMessageFor(model => model.DiaChi, "", new { @style = "margin-bottom:15px; color:#DC143C;" })
+                </div>
+                <div>
+                    <span>@Html.LabelFor(model => model.Email)</span>
+                    @Html.TextBoxFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @style = "margin-bottom:15px; color:#DC143C;" })
+                </div>
+                <div>
+                    <span>@Html.LabelFor(model => model.SoDienThoai)</span>
+                    @Html.TextBoxFor(model => model.SoDienThoai)
+                    @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @style = "margin-bottom:15px; color:#DC143C;" })
+                </div>
+                <div>
+
+                    <span>@Html.LabelFor(model => model.CauHoi)</span>
+                    @Html.DropDownList("CauHoi")    <!--hiển thị câu hỏi lên dropdownlist qua viewbag-->
+                </div>
+                <div>
+                    @Html.TextBoxFor(model => model.CauTraLoi)
+                    @Html.ValidationMessageFor(model => model.CauTraLoi, "", new { @style = "margin-bottom:15px; color:#DC143C;" })
+                </div>
+            </div>
+            <div class="col-md-6 register-bottom-grid">
+                <h3>Thông tin đăng nhập</h3>
+                <div>
+                    <span>@Html.LabelFor(model => model.TaiKhoan)</span>
+                    @Html.TextBoxFor(model => model.TaiKhoan)
+                    @Html.ValidationMessageFor(model => model.TaiKhoan, "", new { @style = "margin-bottom:15px; color:#DC143C;" })
+                </div>
+                <div>
+                    <span>@Html.LabelFor(model => model.MatKhau)</span>
+                    @Html.PasswordFor(model => model.MatKhau)
+                    @Html.ValidationMessageFor(model => model.MatKhau, "", new { @style = "margin-bottom:15px; color:#DC143C;" })
+                </div>
+                <div>
+                    <span>Nhập lại mật khẩu</span>
+                    @Html.Password("NhapLaiMatKhau")
+                </div>
+
+                <div>
+                    @Html.Captcha(5) <br />
+                    <span style="color:crimson">@ViewBag.ThongBao</span> 
+                </div>
+
+                <input type="submit" value="Xác nhận">
+
+            </div>
+            <div class="clearfix"> </div>
+            }
+    </div>
+</div>
+

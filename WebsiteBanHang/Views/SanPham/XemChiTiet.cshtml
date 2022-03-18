@@ -1,0 +1,101 @@
+﻿@model WebsiteBanHang.Models.SanPham
+
+@{
+    ViewBag.Title = "XemChiTiet";
+    Layout = "~/Views/Layout/ProductLayout.cshtml";
+}
+
+<div class="col-md-9 product-price1" style="text-align:left;">
+    <div class="col-md-5 single-top">
+        <div class="flexslider">
+            <ul class="slides">
+                <li data-thumb="@Url.Content("~/Content/HinhAnhSP/"+Model.HinhAnh1)">
+                    <img src="@Url.Content("~/Content/HinhAnhSP/"+Model.HinhAnh1)" />
+                </li>
+                <li data-thumb="@Url.Content("~/Content/HinhAnhSP/"+Model.HinhAnh2)">
+                    <img src="@Url.Content("~/Content/HinhAnhSP/"+Model.HinhAnh2)" />
+                </li>
+                <li data-thumb="@Url.Content("~/Content/HinhAnhSP/"+Model.HinhAnh3)">
+                    <img src="@Url.Content("~/Content/HinhAnhSP/"+Model.HinhAnh3)" />
+                </li>
+                <li data-thumb="@Url.Content("~/Content/HinhAnhSP/"+Model.HinhAnh4)">
+                    <img src="@Url.Content("~/Content/HinhAnhSP/"+Model.HinhAnh4)" />
+                </li>
+            </ul>
+        </div>
+
+        <script defer src="~/Content/ProductLayout/js/jquery.flexslider.js"></script>
+        <link rel="stylesheet" href="~/Content/ProductLayout/css/flexslider.css" type="text/css" media="screen" />
+
+        <script>
+            // Can also be used with $(document).ready()
+            $(window).load(function () {
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    controlNav: "thumbnails"
+                });
+            });
+        </script>
+    </div>
+    
+    <div class="col-md-7 single-top-in simpleCart_shelfItem">
+        <div class="single-para " >
+            <h4>@Model.TenSP</h4>
+            <div class="star-on">
+                <ul class="star-footer">
+                    <li><a href="#"><i> </i></a></li>
+                    <li><a href="#"><i> </i></a></li>
+                    <li><a href="#"><i> </i></a></li>
+                    <li><a href="#"><i> </i></a></li>
+                    <li><a href="#"><i> </i></a></li>
+                </ul>
+                <div class="review"> <a href="#"> @Model.LuotXem Lượt xem</a> </div>
+                <div class="clearfix"> </div>
+            </div>
+            <h5 class="item_price">Giá: @Model.DonGia.Value.ToString("#,##") VNĐ</h5>
+            <div style="border-bottom: 1px solid #C4C3C3;">
+                <p style="font-weight:bold;font-size:18px">Cấu hình:</p>
+                @Html.Raw(Model.CauHinh)
+            </div>
+
+            <a href="@Url.Action("ThemGioHang","GioHang", new { @MaSP=Model.MaSP, @strURL = Request.Url.ToString() })" class="add-cart item_add">Thêm vào giỏ</a>
+        </div>
+    </div>
+
+    <div class="clearfix"> </div>
+
+    <div class="cd-tabs">
+        <nav>
+            <ul class="cd-tabs-navigation">
+                <li><a data-content="fashion" class="selected" href="#0">Thông tin mô tả </a></li>
+                <li><a data-content="cinema" href="#0">Thông số kĩ thuật</a></li>
+            </ul>
+        </nav>
+        <ul class="cd-tabs-content">
+            <li data-content="fashion" class="selected">
+                <div class="facts">
+                    @Html.Raw(Model.MoTa)
+                </div>
+            </li>
+            <li data-content="cinema">
+                <div class="facts1">
+                    <div class="color">
+                        <p>Color</p>
+                        <span>Blue, Black, Red</span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="color">
+                        <p>Size</p>
+                        <span>S, M, L, XL</span>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </li>
+            
+            <div class="clearfix"></div>
+        </ul>
+    </div>
+
+</div>
+
+

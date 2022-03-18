@@ -1,0 +1,123 @@
+﻿@using WebsiteBanHang.Models
+
+<div class="header-top">
+    <div class="container">
+        @* Tạo form submit về action tìm kiếm *@
+        @using (Html.BeginForm("LayTuKhoaTimKiem", "TimKiem"))
+        {
+        <div class="search">
+            <form>
+                <input type="text" name="sTuKhoa" value="Search " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                <input type="submit" value="Tìm kiếm"> 
+            </form>
+        </div>
+        }
+        
+        <div class="header-left">
+            <ul>
+                <li style="display:inline;"><a class="lock" href="@Url.Action("Index", "ThongKe")">Trang quản lý</a>  </li>
+                @if (Session["TaiKhoan"] != null && Session["TaiKhoan"].ToString() != "")
+                {
+                    ThanhVien tv = (ThanhVien)Session["TaiKhoan"];     //ép kiểu từ biến session thành biến tv để lấy ra thông tin
+                    <li style="display:inline; color:white; font-size:17px; margin-right:15px;">Chào @tv.HoTen </li>
+                    <li><a class="lock" href="@Url.Action("DangXuat", "Home")">Đăng xuất</a>  </li>
+                    @*@Html.ActionLink("Đăng xuất", "DangXuat", "Home", new { @class = "lock" })*@
+                }
+                else
+                {
+                    <li style="display:inline;"><a id="btnDangNhap" class="lock" href="#">Đăng nhập</a></li>
+                    <li style="display:inline;"><a class="lock" href="@Url.Action("DangKy", "Home")">Đăng ký</a></li>
+                }
+
+
+            </ul>
+            <!--chèn partial view giỏ hàng vào layout (tách icon giỏ hàng sang 1 partial view mới)-->
+            @Html.Action("GioHangPartial","GioHang")
+            <div class="clearfix"> </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+
+
+<!--login form-->
+
+<link href="~/Content/css/Style_form_dangNhap.css" rel='stylesheet' type='text/css' />
+
+<div>
+    <br />
+    <div id="popup_login">
+        <div class="login-form" id="login-form">
+            <div style="clear:both;text-align:right;margin-bottom:0">
+                <span id="close-form" class="btn btn-danger">X</span>
+            </div>
+            <h2>Đăng nhập</h2>
+            <div class="form-info">
+                <!--Dùng ajax để hiển thị thông báo khi đăng nhập-->
+                @using(Ajax.BeginForm("DangNhap","Home",new AjaxOptions {HttpMethod= "POST", InsertionMode = InsertionMode.Replace,UpdateTargetId= "ThongBao" }))
+                {
+
+                    <input type="text" class="email" name="txtTenDangNhap" placeholder="Tên đăng nhập" required="" />
+                    <input type="password" class="password" name="txtMatKhau" placeholder="Mật khẩu" required="" />
+                    <p><a href="#">Quên mật khẩu?</a></p>
+                    <h3 id="ThongBao" style="font-weight:bold; color:crimson; text-align:left" ></h3>
+                    <ul class="login-buttons">
+                        <li><input type="submit" class="btn-summit" value="Đăng nhập" style="height: 51px; width: 199px;" /></li>
+                        <li><a href="#" class="btn-summit hvr-sweep-to-left" style="min-width: 150px; height: 47px; font-size: 16px; text-decoration:none">đăng ký</a></li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+
+    #close-form {
+        color: white;
+    }
+    #popup_login {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 1000;
+        display: none;
+        text-align: center;
+        
+    }
+    .btn-summit:hover {
+        background: rgba(54, 185, 204);
+        color: #fff;
+        transition: 0.6s all;
+        -webkit-transition: 0.6s all;
+        -moz-transition: 0.6s all;
+        -o-transition: 0.6s all;
+    }
+
+    .btn-summit {
+        background: rgba(63, 101, 212);
+        color: #fff;
+        padding: 15px 60px;
+        font-size: 1.1em;
+        font-weight: 600;
+        margin-right: 27px;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+
+<script type="text/javascript">
+    $("#btnDangNhap").click(function () {
+        $("#popup_login").show();
+    });
+    $("#close-form").click(function () {
+        $("#popup_login").hide();
+    });
+</script>

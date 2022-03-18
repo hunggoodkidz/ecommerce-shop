@@ -1,0 +1,30 @@
+﻿@using WebsiteBanHang.Models;
+@model IEnumerable<SanPham>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+@{
+    //định nghĩa các viewbag để truyền vào partial view
+    IEnumerable<SanPham> lstLTM = (IEnumerable<SanPham>)ViewBag.ListLTM;    //cách ép kiểu 1
+    IEnumerable<SanPham> lstPCM = ViewBag.ListPCM as IEnumerable<SanPham>;   //cách ép kiểu 2
+    IEnumerable<SanPham> lstDTM = ViewBag.ListDTM as IEnumerable<SanPham>;
+}
+<!--bc1: tách code và lồng partialview  -->
+<!-- bc2: gán data từ controller qua viewbag vào partialview -->
+<!--Laptop-->
+<div class="container">
+    @Html.Partial("~/Views/SanPham/SanPhamStyle1Partial.cshtml", lstLTM) @*dùng đg dẫn tuyệt đối vì khác folder và truyền vào model của lstLTM*@
+</div>
+
+<!--Điện thoại-->
+<div class="container">
+    @Html.Partial("~/Views/SanPham/SanPhamStyle2Partial.cshtml", lstDTM)
+</div>
+
+<!--Pc-->
+<div class="container">
+    @Html.Partial("~/Views/SanPham/SanPhamStyle1Partial.cshtml", lstPCM) @*dùng đg dẫn tuyệt đối vì khác folder và truyền vào model của lstPCM*@
+</div>
+

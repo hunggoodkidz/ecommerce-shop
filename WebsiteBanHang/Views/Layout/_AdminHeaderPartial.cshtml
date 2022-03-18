@@ -1,0 +1,106 @@
+﻿@using WebsiteBanHang.Models
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown no-arrow">
+            <ul class="nav navbar-nav navbar-right mr-3">
+                <li style="display: inline; margin-right: 1em;" class="btn btn-warning"><a class="lock" style="text-decoration:none;color:white;" href="@Url.Action("Index", "Home")">Trang bán hàng</a>  </li>
+                @if (Session["TaiKhoan"] != null && Session["TaiKhoan"].ToString() != "")
+                {
+                    ThanhVien tv = (ThanhVien)Session["TaiKhoan"];
+                    <li class="mr-3">Xin chào @tv.HoTen</li>
+                    <li>@*@Html.ActionLink("Đăng xuất", "DangXuatAdmin", "ThongKe", new { @class = "lock" })*@ <a class="lock" href="@Url.Action("DangXuatAdmin","ThongKe")">Đăng xuất</a> </li>
+                }
+                else
+                {
+                    <li style="display:inline; margin-right:1em;" class="btn btn-primary"><a id="btnDangNhap" class="lock" style="text-decoration:none;color:white;" href="#">Đăng nhập</a></li>
+                    <li style="display:inline; margin-right:1em;" class="btn btn-success"><a class="lock" style="text-decoration:none;color:white;" href="@Url.Action("DangKyAdmin", "ThongKe")">Đăng ký</a></li>
+                }
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<!--login form-->
+
+<link href="~/Content/css/Style_form_dangNhap.css" rel='stylesheet' type='text/css' />
+
+<div>
+    <br />
+    <div id="popup_login">
+        <div class="login-form" id="login-form">
+            <div style="clear:both;text-align:right;margin-bottom:0">
+                <span id="close-form" class="btn btn-danger">X</span>
+            </div>
+            <h2>Đăng nhập</h2>
+            <div class="form-info">
+                <!--Dùng ajax để hiển thị thông báo khi đăng nhập-->
+                @using (Ajax.BeginForm("DangNhapAdmin", "ThongKe", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "ThongBao" }))
+                {
+
+                    <input type="text" class="email" name="txtTenDangNhap" placeholder="Tên đăng nhập" required="" />
+                    <input type="password" class="password" name="txtMatKhau" placeholder="Mật khẩu" required="" />
+                    <p><a href="#">Quên mật khẩu?</a></p>
+                    <h3 id="ThongBao" style="font-weight:bold; color:crimson; text-align:left"></h3>
+                    <ul class="login-buttons">
+                        <li><input class="btn-summit" type="submit" value="Đăng nhập" style="height: 51px; width: 199px;" /></li>
+                        <li><a href="#" class="btn-summit hvr-sweep-to-left" style="min-width: 150px; height: 47px; font-size: 16px; text-decoration:none">đăng ký</a></li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+
+    #close-form {
+        color: white;
+    }
+    
+
+    #popup_login {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 1000;
+        display: none;
+        text-align: center;
+    }
+
+    .btn-summit:hover {
+        background: rgba(54, 185, 204);
+        color: #fff;
+        transition: 0.6s all;
+        -webkit-transition: 0.6s all;
+        -moz-transition: 0.6s all;
+        -o-transition: 0.6s all;
+    }
+
+    .btn-summit {
+        background: rgba(63, 101, 212);
+        color: #fff;
+        padding: 15px 60px;
+        font-size: 1.1em;
+        font-weight: 600;
+        margin-right: 27px;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+    }
+
+</style>
+
+<script type="text/javascript">
+    $("#btnDangNhap").click(function () {
+        $("#popup_login").show();
+    });
+    $("#close-form").click(function () {
+        $("#popup_login").hide();
+    });
+</script>

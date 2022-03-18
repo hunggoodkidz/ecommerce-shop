@@ -1,0 +1,79 @@
+﻿@using WebsiteBanHang.Models
+@model IEnumerable<SanPham>
+
+
+<style>
+    .b-from-top {
+        background: rgba(0, 0, 0, 0.64); 
+    }
+    .content-top-bottom .col-md-6 h3 a {
+        text-decoration: none;
+        color: black;
+    }
+        .content-top-bottom .col-md-6 h3 a:hover {
+            color: rgba(239, 95, 33);
+        }
+</style>
+<div class="content-top-bottom">
+    <!--dùng phương thức linq Lấy ra sp đầu tiên trong model,r lấy tên loại thông qua liên kết vs bảng loại sp-->
+    <h2><span>@Model.First().LoaiSanPham.TenLoai</span><span> mới nhất</span></h2>
+    <div class="col-md-6 men">
+        <a href="@Url.RouteUrl("XemChiTiet",new {@id= Model.ElementAt(1).MaSP, @tensp = Model.ElementAt(1).TenSP })" class="b-link-stripe b-animate-go  thickbox">
+            <img class="img-responsive" src="@Url.Content("~/Content/HinhAnhSP/"+Model.ElementAt(1).HinhAnh)" style="width:540px;height:429px" alt="">
+            <!--Lấy ra hình ảnh từ model tại phần tử 1-->
+            <div class="b-wrapper">
+                <h3 class="b-animate b-from-top top-in   b-delay03 ">
+                    <span>@Html.Raw(Model.ElementAt(1).CauHinh)</span>
+                </h3>
+            </div>
+        </a>
+        <h3><a href="@Url.RouteUrl("XemChiTiet",new {@id= Model.ElementAt(1).MaSP, @tensp = Model.ElementAt(1).TenSP })">@Html.Raw(Model.ElementAt(1).TenSP)</a></h3>
+
+    </div>
+    <div class="col-md-6">
+        <div class="col-md1 ">
+            <a href="@Url.RouteUrl("XemChiTiet",new {@id= Model.ElementAt(4).MaSP, @tensp = Model.ElementAt(4).TenSP })" class="b-link-stripe b-animate-go  thickbox">
+                <img class="img-responsive" src="@Url.Content("~/Content/HinhAnhSP/"+Model.ElementAt(4).HinhAnh)" alt="" style="width:540px;height:203px">
+                <div class="b-wrapper">
+                    <h3 class="b-animate b-from-top top-in1   b-delay03 ">
+                        <span>@Html.Raw(Model.ElementAt(4).CauHinh)</span>
+                    </h3>
+                </div>
+            </a>
+            <h3><a href="@Url.RouteUrl("XemChiTiet",new {@id= Model.ElementAt(4).MaSP, @tensp = Model.ElementAt(4).TenSP })">@Html.Raw(Model.ElementAt(4).TenSP.Substring(0,26))</a></h3>
+
+        </div>
+        <div class="col-md2">
+            <div class="col-md-6 men1">
+                <a href="@Url.RouteUrl("XemChiTiet",new {@id= Model.ElementAt(0).MaSP, @tensp = Model.ElementAt(0).TenSP })" class="b-link-stripe b-animate-go  thickbox">
+                    <img class="img-responsive" src="@Url.Content("~/Content/HinhAnhSP/"+Model.ElementAt(0).HinhAnh)" alt="" style="width:255px;height:196px">
+                    <div class="b-wrapper">
+                        <h3 class="b-animate b-from-top top-in2   b-delay03 ">
+                            <span>@Html.Raw(Model.ElementAt(0).CauHinh)</span>
+                        </h3>
+                    </div>
+                </a>
+                <h3><a href="@Url.RouteUrl("XemChiTiet",new {@id= Model.ElementAt(0).MaSP, @tensp = Model.ElementAt(0).TenSP })">@Html.Raw(Model.ElementAt(0).TenSP.Substring(0, 17))</a></h3>
+
+            </div>
+            <div class="col-md-6 men2">
+                <a href="@Url.RouteUrl("XemChiTiet",new {@id= Model.ElementAt(2).MaSP, @tensp = Model.ElementAt(2).TenSP })" class="b-link-stripe b-animate-go  thickbox">
+                    <img class="img-responsive" src="@Url.Content("~/Content/HinhAnhSP/"+Model.ElementAt(2).HinhAnh)" alt="" style="width: 255px; height: 196px">
+                    <div class="b-wrapper">
+                        <h3 class="b-animate b-from-top top-in2   b-delay03 ">
+                            <span>@Html.Raw(Model.ElementAt(2).CauHinh)</span>
+                        </h3>
+                    </div>
+                </a>
+                <h3>
+                    <a href="@Url.RouteUrl("XemChiTiet",new {@id= Model.ElementAt(2).MaSP, @tensp = Model.ElementAt(2).TenSP })">
+                        @Html.Raw(Model.ElementAt(2).TenSP.Substring(0, 17))
+                    </a>
+                </h3>
+
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="clearfix"> </div>
+</div>

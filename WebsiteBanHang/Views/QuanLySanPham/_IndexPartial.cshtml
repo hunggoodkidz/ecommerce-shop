@@ -1,0 +1,30 @@
+﻿@{
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 10); //khởi tạo control webgird
+}
+
+@* Thể hiện dữ liệu qua webgird *@
+
+@if (grid != null)
+{
+    <div id="list" class="table-responsive">
+        @grid.GetHtml(
+        tableStyle: "table table-bordered table-hover",
+        headerStyle: "",
+        footerStyle: "text-center",
+        numericLinksCount: 10,
+        mode: WebGridPagerModes.All, firstText: "Trang đầu", lastText: "Trang cuối",
+        columns: grid.Columns(
+            grid.Column("MaSP", "Mã SP"),
+            grid.Column("TenSP", "Tên SP"),
+            grid.Column("HinhAnh", "Hình ảnh", format: p => Html.Raw("<img width=\"150\" height=\"150\" src=\"../Content/HinhAnhSP/" + p.HinhAnh + "\">")),
+            grid.Column("SoLuongTon", "Tồn kho"),
+            grid.Column("DonGia", "Đơn giá", format: p=>p.DonGia.ToString("#,##")),
+            grid.Column("LoaiSanPham.TenLoai", "Loại"),
+            grid.Column("NhaSanXuat.TenNSX", "NSX"),
+            grid.Column(format: p => Html.ActionLink("Chỉnh sửa", "ChinhSua", new { id = p.MaSP })),
+            grid.Column(format: p => Html.ActionLink("Xóa", "Xoa", new { id = p.MaSP })),
+            grid.Column(format: p => Html.ActionLink("Upload Hình", "UploadHinh", new { id = p.MaSP }))
+            )
+        )
+    </div>
+}

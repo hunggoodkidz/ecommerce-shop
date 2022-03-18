@@ -1,0 +1,31 @@
+﻿@model IEnumerable<WebsiteBanHang.Models.SanPham>
+@{
+    ViewBag.Title = "Sản phẩm gần hết hàng";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 10); //khởi tạo control webgird
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="card">
+    <div class="card-body">
+        @if (grid != null)
+        {
+            <div id="list" class="table-responsive">
+                @grid.GetHtml(
+                tableStyle: "table table-bordered table-hover",
+                headerStyle: "",
+                footerStyle: "text-center",
+                numericLinksCount: 10,
+                mode: WebGridPagerModes.All, firstText: "Trang đầu", lastText: "Trang cuối",
+                columns: grid.Columns(
+                    grid.Column("MaSP", "Mã sản phẩm"),
+                    grid.Column("TenSP", "Tên sản phẩm"),
+                    grid.Column("HinhAnh", "Hình ảnh", format: p => Html.Raw("<img width=\"100\" height=\"100\" src=\"../Content/HinhAnhSP/" + p.HinhAnh + "\">")),
+                    grid.Column(format: p => Html.ActionLink("Nhập hàng", "NhapHangDon", new { id = p.MaSP }))
+                    )
+                )
+            </div>
+        }
+    </div>
+</div>

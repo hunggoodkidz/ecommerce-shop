@@ -1,0 +1,32 @@
+﻿@using WebsiteBanHang.Models
+@model IEnumerable<LoaiThanhVien>
+@{
+    ViewBag.Title = "Phân quyền thành viên";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 10);
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="card">
+    <div class="card-body">
+        @if (grid != null)
+        {
+            <div id="list" class="table-responsive">
+                @grid.GetHtml(
+                tableStyle: "table table-bordered table-hover",
+                headerStyle: "",
+                footerStyle: "text-center",
+                numericLinksCount: 10,
+                mode: WebGridPagerModes.All, firstText: "Trang đầu", lastText: "Trang cuối",
+                columns: grid.Columns(
+                    grid.Column("MaLoaiTV", "Mã Loại TV"),
+                    grid.Column("TenLoai", "Tên loại"),                  
+                    grid.Column(format: p => Html.ActionLink("Phân quyền", "PhanQuyen", new { id = p.MaLoaiTV }))
+                    )
+                )
+            </div>
+        }
+    </div>
+</div>
+

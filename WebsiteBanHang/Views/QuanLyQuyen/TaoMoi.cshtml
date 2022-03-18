@@ -1,0 +1,42 @@
+﻿@model WebsiteBanHang.Models.Quyen
+@{
+    ViewBag.Title = "Quản lý quyền";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<h4>@Html.ActionLink("Quản lý quyền", "Index") > Tạo mới</h4>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Tạo mới quyền</h4>
+        @using (Html.BeginForm("TaoMoi", "QuanLyQuyen", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.MaQuyen, htmlAttributes: new { @class = "col-form-label font-weight-bold col-sm-2" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.MaQuyen, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MaQuyen, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.TenQuyen, htmlAttributes: new { @class = "col-form-label font-weight-bold col-sm-2" })
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.TenQuyen, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TenQuyen, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row ">
+                    <div class="col-sm-4 mt-3">
+                        <input type="submit" value="Thêm mới" class="btn btn-sm btn-primary font-weight-bold w-25" />
+                        @Html.ActionLink("Trở về", "Index", null, htmlAttributes: new { @class = "btn btn-sm btn-secondary font-weight-bold w-25" })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

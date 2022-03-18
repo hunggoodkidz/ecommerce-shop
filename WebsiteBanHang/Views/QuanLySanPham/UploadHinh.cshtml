@@ -1,0 +1,54 @@
+﻿@model WebsiteBanHang.Models.SanPham
+@{
+    ViewBag.Title = "Quản lý sản phẩm";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<h4>@Html.ActionLink("Sản Phẩm", "Index") > Upload hình</h4>
+<div class="card shadow">
+    <div class="card-body">
+        <h3 class="text-info mb-3">Tên sản phẩm: @Model.TenSP</h3>
+        <div class="text-danger"> @ViewBag.ThongBao</div>
+
+        @using (Html.BeginForm("UploadHinh", "QuanLySanPham", FormMethod.Post, htmlAttributes: new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <h4>Hình ảnh</h4>
+            <div class="custom-file mb-3">
+                <input type="file" class="custom-file-input" id="inputfile" name="HinhAnh" multiple>
+                <label class="custom-file-label" for="inputfile">Chọn hình ảnh</label>
+            </div>
+
+            <h4>Hình ảnh 1</h4>
+            <div class="custom-file mb-3">
+                <input type="file" class="custom-file-input" id="inputfile" name="HinhAnh1" multiple>
+                <label class="custom-file-label" for="inputfile">Chọn hình ảnh</label>
+            </div>
+
+            <h4>Hình ảnh 2</h4>
+            <div class="custom-file mb-3">
+                <input type="file" class="custom-file-input" id="inputfile" name="HinhAnh2" multiple>
+                <label class="custom-file-label" for="inputfile">Chọn hình ảnh</label>
+            </div>
+
+            <h4>Hình ảnh 3</h4>
+            <div class="custom-file mb-3">
+                <input type="file" class="custom-file-input" id="inputfile" name="HinhAnh3" multiple>
+                <label class="custom-file-label" for="inputfile">Chọn hình ảnh</label>
+            </div>
+
+            <h4>Hình ảnh 4</h4>
+            <div class="custom-file mb-3">
+                <input type="file" class="custom-file-input" id="inputfile" name="HinhAnh4" multiple>
+                <label class="custom-file-label" for="inputfile">Chọn hình ảnh</label>
+            </div>
+
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-primary">Upload</button>
+                @Html.ActionLink("Trở về", "Index", null, htmlAttributes: new { @class = "btn btn-sm btn-secondary " })
+            </div>
+        }
+    </div>
+</div>
+

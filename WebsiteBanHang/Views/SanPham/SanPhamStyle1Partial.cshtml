@@ -1,0 +1,34 @@
+﻿@using WebsiteBanHang.Models;
+@model IEnumerable<SanPham>
+
+<style>
+    .col-md-4 .grid-top .nameSP a:hover {
+        rgba(239, 95, 33);
+    }
+</style>
+<div class="content-top">
+    <h1>
+        <!--dùng phương thức linq Lấy ra sp đầu tiên trong model,r lấy tên loại thông qua liên kết vs bảng loại sp-->
+        <span>@Model.First().LoaiSanPham.TenLoai</span> <span>mới nhất</span>
+    </h1> 
+    <div class="grid-in">
+        @foreach (var item in Model.Take(3)) //lấy ra 3 sp
+        {
+
+            <div class="col-md-4 grid-top">
+                <a href="@Url.RouteUrl("XemChiTiet",new {@id=item.MaSP, @tensp = item.TenSP })" class="b-link-stripe b-animate-go  thickbox">
+                    <img class="img-responsive" src="@Url.Content("~/Content/HinhAnhSP/"+item.HinhAnh)" style="height: 390px; width:519px;" alt="">
+                    <div class="b-wrapper">
+                        <h4 class="b-animate b-from-left    b-delay03 " style="text-align:left;font-size:13pt; font-weight:normal;padding:1em">
+                            @Html.Raw(item.CauHinh)
+                        </h4>
+                    </div>
+                </a>
+
+                <p class="nameSP"><a href="@Url.RouteUrl("XemChiTiet",new {@id=item.MaSP, @tensp = item.TenSP })">@item.TenSP</a></p>
+            </div>
+        }
+        <div class="clearfix"> </div>
+    </div>
+
+</div>

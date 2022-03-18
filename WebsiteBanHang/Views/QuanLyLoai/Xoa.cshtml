@@ -1,0 +1,41 @@
+﻿@model WebsiteBanHang.Models.LoaiSanPham
+@{
+    ViewBag.Title = "Quản lý loại sản phẩm";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<h4>@Html.ActionLink("Quản lý loại", "Index") > Xóa</h4>
+<div class="card shadow">
+    <div class="card-body">
+        <h4 class="card-title">Thông tin sản phẩm</h4>
+        <hr />
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.MaLoaiSP)</label>
+            <div class="col-sm-6 col-form-label">@Html.DisplayFor(model => model.MaLoaiSP)</div>
+        </div>
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.TenLoai)</label>
+            <div class="col-sm-6 col-form-label">@Html.DisplayFor(model => model.TenLoai)</div>
+        </div>
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Icon)</label>
+            <div class="col-sm-6 col-form-label">@Html.DisplayFor(model => model.MaLoaiSP)</div>
+        </div>
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.BiDanh)</label>
+            <div class="col-sm-6 col-form-label">@Html.DisplayFor(model => model.TenLoai)</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Xóa" class="btn btn-sm btn-primary font-weight-bold w-25" />
+                    @Html.ActionLink("Trở về", "Index", null, htmlAttributes: new { @class = "btn btn-sm btn-secondary font-weight-bold w-25" })
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,102 @@
+﻿@model WebsiteBanHang.Models.SanPham
+
+@{
+    ViewBag.Title = "Quản lý sản phẩm";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<h4>@Html.ActionLink("Sản Phẩm", "Index") > Xóa</h4>
+<div class="card shadow">
+    <div class="card-body">
+        <h4 class="card-title">Thông tin sản phẩm</h4>
+        <hr />
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.MaSP)</label>
+            <div class="col-sm-6 col-form-label">@Html.DisplayFor(model => model.MaSP)</div>
+        </div>
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.TenSP)</label>
+            <div class="col-sm-6 col-form-label">@Html.DisplayFor(model => model.TenSP)</div>
+        </div>
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.DonGia)</label>
+            <div class="col-sm-6 col-form-label">@Html.DisplayFor(model => model.DonGia)</div>
+        </div>
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.NgayCapNhat)</label>
+            <div class="col-sm-6 col-form-label">@Html.DisplayFor(model => model.NgayCapNhat)</div>
+        </div>
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.CauHinh)</label>
+            <div class="col-sm-6 col-form-label">@Html.DisplayFor(model => model.CauHinh)</div>
+        </div>
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.HinhAnh)</label>
+            <img src="@Url.Content("~/Content/HinhAnhSP/" + Model.HinhAnh)" class="img-thumbnail" alt="Cinque Terre" width="200" height="200">
+
+        </div>
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.LuotXem)</label>
+            <div class="col-sm-6 col-form-label">@Html.DisplayFor(model => model.LuotXem)</div>
+        </div>
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.LuotBinhChon)</label>
+            <div class="col-sm-6 col-form-label">@Html.DisplayFor(model => model.LuotBinhChon)</div>
+        </div>
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.LuotBinhLuan)</label>
+            <div class="col-sm-6 col-form-label">@Html.DisplayFor(model => model.LuotBinhLuan)</div>
+        </div>
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.MaNCC)</label>
+            <div class="col-sm-6 col-form-label">@Html.DisplayFor(model => model.MaNCC)</div>
+        </div>
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.MaNSX)</label>
+            <div class="col-sm-6 col-form-label">@Html.DisplayFor(model => model.MaNSX)</div>
+        </div>
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.MaLoaiSP)</label>
+            <div class="col-sm-6 col-form-label">@Html.DisplayFor(model => model.MaLoaiSP)</div>
+        </div>
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.DaXoa)</label>
+            <div class="col-sm-6 col-form-label">@Html.DisplayFor(model => model.DaXoa)</div>
+        </div>
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.HinhAnh1)</label>
+            <img src="@Url.Content("~/Content/HinhAnhSP/" + Model.HinhAnh1)" class="img-thumbnail" alt="Cinque Terre" width="200" height="200">
+
+        </div>
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.HinhAnh2)</label>
+            <img src="@Url.Content("~/Content/HinhAnhSP/" + Model.HinhAnh2)" class="img-thumbnail" alt="Cinque Terre" width="200" height="200">
+        </div>
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.HinhAnh3)</label>
+            <img src="@Url.Content("~/Content/HinhAnhSP/" + Model.HinhAnh3)" class="img-thumbnail" alt="Cinque Terre" width="200" height="200">
+        </div>
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.HinhAnh4)</label>
+            <img src="@Url.Content("~/Content/HinhAnhSP/" + Model.HinhAnh4)" class="img-thumbnail" alt="Cinque Terre" width="200" height="200">
+        </div>
+        <div class="row ">
+            <label class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.MoTa)</label>
+            <div class="col-sm-6 col-form-label">@Html.DisplayFor(model => model.MoTa, "", new { @class = "overflow-auto" })</div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Xóa" class="btn btn-sm btn-primary font-weight-bold w-25" />
+                    @Html.ActionLink("Trở về", "Index", null, htmlAttributes: new { @class = "btn btn-sm btn-secondary font-weight-bold w-25" })
+                }
+            </div>
+        </div>
+
+     
+    </div>
+</div>

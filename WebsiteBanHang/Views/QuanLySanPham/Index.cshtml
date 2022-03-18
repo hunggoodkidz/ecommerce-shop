@@ -1,0 +1,19 @@
+﻿@using WebsiteBanHang.Models;
+@model IEnumerable<SanPham>
+@{
+    ViewBag.Title = "Quản lý sản phẩm";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="card">
+    <div class="card-body">
+        <p>
+            @Html.ActionLink("Thêm mới", "TaoMoi", null, htmlAttributes: new { @class = "btn btn-sm btn-warning font-weight-bold " })
+        </p>
+        <div id="divPartialView">
+            @Html.Partial("_IndexPartial")
+        </div>
+    </div>
+</div>

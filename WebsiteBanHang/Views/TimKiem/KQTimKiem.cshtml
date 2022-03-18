@@ -1,0 +1,42 @@
+﻿@using WebsiteBanHang.Models
+@using PagedList.Mvc
+@model PagedList.IPagedList<SanPham>
+@{
+    ViewBag.Title = "KQTimKiem";
+    Layout = "~/Views/Layout/ProductLayout.cshtml";
+}
+
+<style>
+    .bottom-product .bottom-cd .tun {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+<div class="col-md-9 product1">
+    <div class=" bottom-product">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 bottom-cd simpleCart_shelfItem" style="padding-bottom:15px">
+                <div class="product-at ">
+                    <a href="@Url.RouteUrl("XemChiTiet",new {@id=item.MaSP, @tensp = item.TenSP })">
+                        <img class="img-responsive" src="@Url.Content("~/Content/HinhAnhSP/"+item.HinhAnh)" alt="" style="width:255px;height:250px;">
+                        <div class="pro-grid">
+                            <span class="buy-in">Xem chi tiết</span>
+                        </div>
+                    </a>
+                </div>
+                <p class="tun">@item.TenSP</p>
+                <a href="@Url.Action("ThemGioHang","GioHang", new { @MaSP=item.MaSP, @strURL = Request.Url.ToString() })" class="item_add"><p class="number item_price"><i> </i>@item.DonGia.Value.ToString("#,##") VNĐ</p></a>
+
+            </div>
+        }
+        <div class="clearfix"> </div>
+    </div>
+    <div class="dlink">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("KQTimKiem", new { page = page, @sTuKhoa = ViewBag.TuKhoa }))
+    </div>
+</div>
+
+

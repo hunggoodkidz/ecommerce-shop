@@ -1,0 +1,218 @@
+﻿@using WebsiteBanHang.Models
+@model List<ItemGioHang>
+
+@{
+    ViewBag.Title = "XemGioHang";
+    Layout = "~/Views/Layout/RegisterLayout.cshtml";
+}
+
+@if (Model == null && Model.Count == 0) //nếu list giỏ hàng rỗng thì xuất thông báo
+{
+    <h1 style="color:crimson">Giỏ hàng rỗng</h1>
+}
+else
+{
+    @*<table class="table">
+        <tr>
+            <td>Mã SP</td>
+            <td>Tên SP</td>
+            <td>Hình ảnh</td>
+            <td>Số lượng</td>
+            <td>Đơn giá</td>
+            <td>Thành tiền</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaSP</td>
+                <td>@item.TenSP</td>
+                <td><img src="@Url.Content("~/Content/HinhAnhSP/" + item.HinhAnh)" width="150" height="150" /></td>
+                <td>@item.SoLuong</td>
+                <td>@item.DonGia.ToString("#,##") đồng</td>
+                <td>@item.ThanhTien.ToString("#,##") đồng</td>
+                <td>
+                    @Html.ActionLink("Sửa", "SuaGioHang", new { @MaSP = item.MaSP }) &ensp;|&ensp;
+                    @Html.ActionLink("Xóa", "XoaGioHang", new { @MaSP = item.MaSP })
+                </td>
+            </tr>
+        }
+    </table>
+    <h3>Tổng tiền: @ViewBag.TongTien.ToString("#,##") VND</h3>
+
+    using (Html.BeginForm("DatHang", "GioHang"))
+    {
+        if (Session["TaiKhoan"] == null)
+        {
+            //thiết kế lưu thông tin khách hàng đối với khách vãng lai
+            <div class="ThongTinMuaHang">
+                <table align="center" class="table">
+                    <tr>
+                        <td align="center" colspan="2"><h2>Thông tin khách hàng</h2> </td>
+                    </tr>
+                    <tr>
+                        <td>Họ tên</td>
+                        <td>@Html.TextBox("TenKH")</td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ</td>
+                        <td>@Html.TextArea("DiaChi")</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>@Html.TextBox("Email")  <span id="ktEmail"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Điện thoại</td>
+                        <td>@Html.TextBox("SoDienThoai")</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>@Html.Hidden("MaThanhVien", 1)</td>
+                    </tr>
+                </table>
+            </div>
+        }
+        <div class="divDatHang" style="text-align:right">
+            <input type="submit" value="Đặt hàng" id="btnDatHang" />
+            @Html.ActionLink("Mua tiếp", "Index", "Home")
+        </div>
+    }*@
+
+<div class="container" style="text-align:left;">
+    @using (Html.BeginForm("DatHang", "GioHang",FormMethod.Post,new {@id="myform" }))
+    {
+        if (Session["TaiKhoan"] == null)
+        {
+            <div class=" register">
+                <h1>Thông tin khách hàng</h1>
+                @Html.Hidden("MaThanhVien", 1)
+                <div class="col-md-6 register-top-grid">
+
+                    <div>
+                        <span>Tên khách hàng</span>
+                        @Html.TextBox("TenKH")
+                    </div>
+                    <div>
+                        <span>Địa chỉ</span>
+                        @Html.TextBox("DiaChi")
+                    </div>
+
+                </div>
+                <div class="col-md-6 register-bottom-grid">
+                    <div>
+                        <span>Email</span>
+                        @Html.TextBox("Email")
+                    </div>
+                    <div>
+                        <span>Điện thoại</span>
+                        @Html.TextBox("SoDienThoai")
+                    </div>
+
+                </div>
+                <div class="clearfix"> </div>
+
+            </div>
+        }
+
+        <div class="check">
+            <h1 style="color:#000000">Giỏ hàng (@ViewBag.TongSoLuong)</h1>
+            <div class="col-md-9 cart-items">
+                @foreach (var item in Model)
+                {
+                    <div class="cart-header">
+
+                        <a href="@Url.Action("SuaGioHang",new {@MaSP = item.MaSP })" class="editIcon"><i class="fas fa-pen-square fa-lg" style="color: rgba(239, 95, 33);"></i></a>
+                        <a href="@Url.Action("XoaGioHang",new {@MaSP = item.MaSP })" class="delIcon"><i class="fas fa-trash fa-lg" style="color: rgba(239, 95, 33);"></i> </a>
+                        <div class="cart-sec simpleCart_shelfItem">
+                            <div class="cart-item cyc">
+                                <img src="@Url.Content("~/Content/HinhAnhSP/" + item.HinhAnh)" class="img-responsive" alt="" />
+                            </div>
+                            <div class="cart-item-info">
+                                <h3><a href="#">@item.TenSP</a></h3>
+                                <ul class="qty">
+                                    <li><p>Số lượng: @item.SoLuong</p></li>
+                                    <li><p>Đơn giá: @item.DonGia.ToString("#,##") VNĐ</p></li>
+                                </ul>
+
+                                <div class="delivery">
+                                    <p style="font-weight:bold;">Thành Tiền: @item.ThanhTien.ToString("#,##") VNĐ</p>
+                                    <span>Giao hàng trong 2-3 ngày làm việc.</span>
+                                    <div class="clearfix"></div>
+
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="col-md-3 cart-total">
+                <a class="continue" href="@Url.Action("Index", "Home")">Tiếp tục mua hàng</a>
+                <div class="price-details">
+                    <h3>Đơn giá chi tiết</h3>
+                    <span>Tổng cộng</span>
+                    <span class="total1">@ViewBag.TongTien.ToString("#,##")</span>
+                    <span>Giảm giá</span>
+                    <span class="total1">---</span>
+                    <div class="clearfix"></div>
+                </div>
+
+                <ul class="total_price">
+                    <li class="last_price"> <h4>Tổng cộng</h4></li>
+                    <li class="last_price"><span>@ViewBag.TongTien.ToString("#,##") VNĐ</span></li>
+                    <div class="clearfix"> </div>
+                </ul>
+
+                <div class="clearfix"></div>
+                <a class="order" href="#" onclick='document.forms["myform"].submit(); return false;'>Đặt hàng</a>
+            </div>
+
+            <div class="clearfix"> </div>
+        </div>
+    }
+
+</div>
+
+
+}
+
+
+<style>
+    .register {
+        padding: 2em 0;
+        border-bottom: 1px solid #C4C3C3;
+    }
+    .register-bottom-grid input[type="text"] {
+        width: 100%;
+        padding: 1em;
+        margin: 1em 0;
+        background: none;
+        outline: none;
+        border: 1px solid #A09F9F;
+        -webkit-appearance: none;
+    }
+
+    .editIcon {
+        cursor: pointer;
+        position: absolute;
+        right: 2em;
+        top: 0px;
+        -webkit-transition: color 0.2s ease-in-out;
+        -moz-transition: color 0.2s ease-in-out;
+        -o-transition: color 0.2s ease-in-out;
+        transition: color 0.2s ease-in-out;
+    }
+
+    .delIcon {
+        cursor: pointer;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        -webkit-transition: color 0.2s ease-in-out;
+        -moz-transition: color 0.2s ease-in-out;
+        -o-transition: color 0.2s ease-in-out;
+        transition: color 0.2s ease-in-out;
+    }
+</style>
+

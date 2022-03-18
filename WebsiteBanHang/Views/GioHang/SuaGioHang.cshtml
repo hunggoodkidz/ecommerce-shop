@@ -1,0 +1,150 @@
+﻿@using WebsiteBanHang.Models
+@model ItemGioHang
+@{
+    ViewBag.Title = "SuaGioHang";
+    Layout = "~/Views/Layout/RegisterLayout.cshtml";
+
+    List<ItemGioHang> lstGioHang = (List<ItemGioHang>)ViewBag.GioHang;
+}
+
+
+@*<table class="table">
+    <tr>
+        <td>Mã SP</td>
+        <td>Tên SP</td>
+        <td>Hình ảnh</td>
+        <td>Số lượng</td>
+        <td>Đơn giá</td>
+        <td>Thành tiền</td>
+    </tr>
+    @foreach (var item in lstGioHang)
+    {
+        //sp có mã sp đc chỉnh sửa gửi từ tham số bên trang xem giỏ hàng
+        if (Model.MaSP == item.MaSP)
+        {
+            using (Html.BeginForm("CapNhatGioHang", "GioHang", FormMethod.Post ,new {@id = "myform" }))
+            {
+                <tr>
+                    <td>@item.MaSP @Html.Hidden("MaSP", item.MaSP)</td>
+                    <td>@item.TenSP</td>
+                    <td><img src="@Url.Content("~/Content/HinhAnhSP/" + item.HinhAnh)" width="150" height="150" /></td>
+                    <td>@Html.TextBox("SoLuong", item.SoLuong)</td>
+                    <td>@item.DonGia.ToString("#,##") đồng</td>
+                    <td>@item.ThanhTien.ToString("#,##") đồng</td>
+                    <td>
+                        <!-- <a href="#" onclick='document.forms["myform"].submit(); return false;'>Cập nhật </a> -->
+                        <input type="submit" value="Cập nhật" />
+                        @Html.ActionLink("Xóa", "XoaGioHang", new { @MaSP = item.MaSP })
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td>@item.MaSP</td>
+                <td>@item.TenSP</td>
+                <td><img src="@Url.Content("~/Content/HinhAnhSP/" + item.HinhAnh)" width="150" height="150" /></td>
+                <td>@item.SoLuong</td>
+                <td>@item.DonGia.ToString("#,##") đồng</td>
+                <td>@item.ThanhTien.ToString("#,##") đồng</td>
+                <td>@Html.ActionLink("Sửa giỏ hàng", "SuaGioHang", new { @MaSP = item.MaSP })</td>
+            </tr>
+        }
+    }
+</table>*@
+
+<div class="container" style="text-align:left;">
+    <div class="check">
+        <div class="col-md-9 cart-items">
+            @foreach (var item in lstGioHang)
+            {
+                if (Model.MaSP == item.MaSP)
+                {
+                    using (Html.BeginForm("CapNhatGioHang", "GioHang", FormMethod.Post, new { @id = "myform" }))
+                    {
+                        <div class="cart-header">
+
+                            <a href="#" class="updateIcon" onclick='document.forms["myform"].submit(); return false;'>
+                                <i class="fas fa-save fa-lg" style="color: rgba(239, 95, 33);"></i>
+                            </a>
+                            <a href="@Url.Action("XoaGioHang", new { @MaSP = item.MaSP })" class="delIcon"><i class="fas fa-trash fa-lg" style="color: rgba(239, 95, 33);"></i> </a>
+                            <div class="cart-sec simpleCart_shelfItem">
+                                <div class="cart-item cyc">
+                                    <img src="@Url.Content("~/Content/HinhAnhSP/" + item.HinhAnh)" class="img-responsive" alt="" />
+                                </div>
+                                <div class="cart-item-info">
+                                    <h3><a href="#">@item.TenSP</a><span> @Html.Hidden("MaSP", item.MaSP)</span></h3>
+                                    <ul class="qty">
+                                        <li><p>Số lượng: @Html.TextBox("SoLuong", item.SoLuong)</p></li>
+                                        <li><p>Đơn giá: @item.DonGia.ToString("#,##") VNĐ</p></li>
+                                    </ul>
+
+                                    <div class="delivery">
+                                        <p style="font-weight:bold;">Thành Tiền: @item.ThanhTien.ToString("#,##") VNĐ</p>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="cart-header">
+
+                        <a href="@Url.Action("SuaGioHang",new {@MaSP = item.MaSP })" class="editIcon"><i class="fas fa-pen-square fa-lg" style="color: rgba(239, 95, 33);"></i></a>
+                        <a href="@Url.Action("XoaGioHang",new {@MaSP = item.MaSP })" class="delIcon"><i class="fas fa-trash fa-lg" style="color: rgba(239, 95, 33);"></i> </a>
+                        <div class="cart-sec simpleCart_shelfItem">
+                            <div class="cart-item cyc">
+                                <img src="@Url.Content("~/Content/HinhAnhSP/" + item.HinhAnh)" class="img-responsive" alt="" />
+                            </div>
+                            <div class="cart-item-info">
+                                <h3><a href="#">@item.TenSP</a><span> @Html.Hidden("MaSP", item.MaSP)</span></h3>
+                                <ul class="qty">
+                                    <li><p>Số lượng: @item.SoLuong</p></li>
+                                    <li><p>Đơn giá: @item.DonGia.ToString("#,##") VNĐ</p></li>
+                                </ul>
+
+                                <div class="delivery">
+                                    <p style="font-weight:bold;">Thành Tiền: @item.ThanhTien.ToString("#,##") VNĐ</p>
+                                    <div class="clearfix"></div>
+
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+        <div class="clearfix"> </div>
+    </div>
+</div>
+
+<style>
+    .updateIcon, .editIcon {
+        cursor: pointer;
+        position: absolute;
+        right: 2em;
+        top: 0px;
+        -webkit-transition: color 0.2s ease-in-out;
+        -moz-transition: color 0.2s ease-in-out;
+        -o-transition: color 0.2s ease-in-out;
+        transition: color 0.2s ease-in-out;
+    }
+    .delIcon {
+        cursor: pointer;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        -webkit-transition: color 0.2s ease-in-out;
+        -moz-transition: color 0.2s ease-in-out;
+        -o-transition: color 0.2s ease-in-out;
+        transition: color 0.2s ease-in-out;
+    }
+</style>
