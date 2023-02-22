@@ -7,21 +7,34 @@ Star⭐ the repo if you like what you see😉.
 
 ## Features
 
--Thêm giỏ hàng, xóa và sửa chi tiết giỏ hàng, đặt hàng.
--Đăng ký, đăng nhập.
--Hiển thị danh sách sản phẩm theo loại, theo nhà sản xuất.
--Thống kê dữ liệu.
--Phân quyền và quản lý quyền.
--Quản lý tài khoản.
--Quản lý đơn đặt hàng.
--Quản lý nhập hàng và sản phẩm sắp hết hàng.
--Quản lý sản phẩm, loại sản phẩm, nhà sản xuất.
+- Thêm giỏ hàng, xóa và sửa chi tiết giỏ hàng, đặt hàng.
+- Đăng ký, đăng nhập.
+- Hiển thị danh sách sản phẩm theo loại, theo nhà sản xuất.
+- Thống kê dữ liệu.
+- Phân quyền và quản lý quyền.
+- Quản lý tài khoản.
+- Quản lý đơn đặt hàng.
+- Quản lý nhập hàng và sản phẩm sắp hết hàng.
+- Quản lý sản phẩm, loại sản phẩm, nhà sản xuất.
 
+*Sorry I'm too lazy to translate so just that's it🤣
 
 ## Screenshots
 
-* In progress
 
+<p>
+<img src="images/home.jpg" width="400"/> 
+<img src="images/chitietsanpham.jpg" width="400"/> 
+<img src="images/product.jpg" width="400"/> 
+<img src="images/login.jpg" width="400"/> 
+</p>
+
+* Admin Panel:
+
+<p>
+<img src="images/adminpanel.jpg" width="400"/> 
+<img src="images/adminproduct.jpg" width="400"/> 
+</p>
 
 ## Author(s)
 
