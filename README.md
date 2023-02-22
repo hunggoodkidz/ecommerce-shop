@@ -36,6 +36,11 @@ Star⭐ the repo if you like what you see😉.
 <img src="images/adminproduct.jpg" width="400"/> 
 </p>
 
+## Technology
+- C# Language
+- ASP.NET MVC
+- MSSQL Server
+
 ## Author(s)
 
 License from Team Pixel 
