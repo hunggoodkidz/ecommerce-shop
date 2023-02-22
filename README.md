@@ -23,10 +23,10 @@ Star⭐ the repo if you like what you see😉.
 
 
 <p>
-<img src="images/home.jpg" width="400"/> 
-<img src="images/chitietsanpham.jpg" width="400"/> 
-<img src="images/product.jpg" width="400"/> 
-<img src="images/login.jpg" width="400"/> 
+<img src="images/home.jpg"/> 
+<img src="images/chitietsanpham.jpg"/> 
+<img src="images/product.jpg" "/> 
+<img src="images/login.jpg""/> 
 </p>
 
 * Admin Panel:
