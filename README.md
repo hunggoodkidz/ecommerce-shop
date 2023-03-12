@@ -7,15 +7,15 @@ Star⭐ the repo if you like what you see😉.
 
 ## Features
 
-- Thêm giỏ hàng, xóa và sửa chi tiết giỏ hàng, đặt hàng.
-- Đăng ký, đăng nhập.
-- Hiển thị danh sách sản phẩm theo loại, theo nhà sản xuất.
-- Thống kê dữ liệu.
-- Phân quyền và quản lý quyền.
-- Quản lý tài khoản.
-- Quản lý đơn đặt hàng.
-- Quản lý nhập hàng và sản phẩm sắp hết hàng.
-- Quản lý sản phẩm, loại sản phẩm, nhà sản xuất.
+- Add cart, delete and edit cart details, order.
+- Register, login.
+- Display product list by type, by manufacturer.
+- Statistics data.
+- Authorization and rights management.
+- Account management.
+- Order management.
+- Manage incoming goods and products that are out of stock.
+- Product management, product type, manufacturer.
 
 *Sorry I'm too lazy to translate so just that's it🤣
 
