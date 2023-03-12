@@ -17,7 +17,6 @@ Star⭐ the repo if you like what you see😉.
 - Manage incoming goods and products that are out of stock.
 - Product management, product type, manufacturer.
 
-*Sorry I'm too lazy to translate so just that's it🤣
 
 ## Screenshots
 
